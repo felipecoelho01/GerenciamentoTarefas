@@ -10,7 +10,7 @@ namespace GerenciamentoTarefas.Services
 
         }
 
-        public DbSet<Lista> TbLogin { get; set; }
-        public DbSet<Tarefas> TodoLists { get; set; }
+        public DbSet<ListaEntity> TbLogin { get; set; }
+        public DbSet<TarefasEntity> TodoLists { get; set; }
     }
 }

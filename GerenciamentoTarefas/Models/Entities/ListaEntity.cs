@@ -1,6 +1,6 @@
 ﻿namespace GerenciamentoTarefas.Models.Entities
 {
-    public class Lista
+    public class ListaEntity
     {
         public int Id { get; set; }
         public string Email { get; set; }

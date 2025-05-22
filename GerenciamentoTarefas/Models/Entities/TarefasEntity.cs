@@ -1,6 +1,6 @@
 ﻿namespace GerenciamentoTarefas.Models.Entities
 {
-    public class Tarefas
+    public class TarefasEntity
     {
         public Guid idList { get; set; }
         public string list_title { get; set; }

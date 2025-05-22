@@ -28,13 +28,13 @@ namespace GerenciamentoTarefas.Controllers
                 return View();
             }
 
-            var register = new Lista
+            var register = new ListaEntity
             {
                 Email = vm.Email,
                 Senha = vm.Senha,
             };
 
-            List<Lista> listaEmail = await ListarEmail();
+            List<ListaEntity> listaEmail = await ListarEmail();
 
             //await dbContext.TbLogin.AddAsync(register);
             //await dbContext.SaveChangesAsync();
@@ -43,7 +43,7 @@ namespace GerenciamentoTarefas.Controllers
         }
 
         [HttpGet]
-        public async Task<List<Lista>> ListarEmail()
+        public async Task<List<ListaEntity>> ListarEmail()
         {
             var emails = await dbContext.TbLogin.ToListAsync();
 

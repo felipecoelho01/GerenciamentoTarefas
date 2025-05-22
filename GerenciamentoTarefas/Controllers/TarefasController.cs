@@ -15,7 +15,7 @@ namespace GerenciamentoTarefas.Controllers
 
 
         [HttpGet]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Tarefas()
         {
             var listTask = await dbContext.TodoLists.FindAsync();
 
@@ -23,7 +23,7 @@ namespace GerenciamentoTarefas.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Edit(Tarefas vw)
+        public async Task<IActionResult> Edit(TarefasEntity vw)
         {
             var Task = await dbContext.TodoLists.FindAsync(vw.idList);
 
@@ -38,7 +38,7 @@ namespace GerenciamentoTarefas.Controllers
                 await dbContext.SaveChangesAsync();
             }
 
-            return View();
+            return RedirectToAction();
         }
     }
 }
