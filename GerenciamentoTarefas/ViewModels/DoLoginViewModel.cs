@@ -1,4 +1,4 @@
-﻿namespace GerenciamentoTarefas.Models
+﻿namespace GerenciamentoTarefas.ViewModels
 {
     public class DoLoginViewModel
     {

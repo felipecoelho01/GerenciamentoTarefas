@@ -1,6 +1,6 @@
-﻿using GerenciamentoTarefas.Models;
-using GerenciamentoTarefas.Models.Entities;
+﻿using GerenciamentoTarefas.Models.Entities;
 using GerenciamentoTarefas.Services;
+using GerenciamentoTarefas.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GerenciamentoTarefas.Controllers
@@ -23,14 +23,7 @@ namespace GerenciamentoTarefas.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(DoLoginViewModel viewModel)
         {
-            var login = new Lista
-            {
-                Email = viewModel.Email,
-                Senha = viewModel.Senha,
-            };
-
-            await dbContext.TbLogin.AddAsync(login);
-            await dbContext.SaveChangesAsync();
+            
 
             return View();
         }
