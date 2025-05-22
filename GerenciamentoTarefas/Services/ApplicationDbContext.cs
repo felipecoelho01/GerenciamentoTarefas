@@ -11,5 +11,6 @@ namespace GerenciamentoTarefas.Services
         }
 
         public DbSet<Lista> TbLogin { get; set; }
+        public DbSet<Tarefas> TodoLists { get; set; }
     }
 }
