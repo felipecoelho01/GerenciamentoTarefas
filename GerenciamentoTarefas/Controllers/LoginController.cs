@@ -17,6 +17,7 @@ namespace GerenciamentoTarefas.Controllers
         }
 
         [HttpGet]
+        [Route("login/Index")]
         public IActionResult Login()
         {
             return View();
@@ -28,11 +29,6 @@ namespace GerenciamentoTarefas.Controllers
         {
             var login = await dbContext.TbLogin.Where(login => login.Email == vm.Email && login.Senha == vm.Senha).ToListAsync();
 
-            var verifyModel = new VerifyModel
-            {
-                verifica = login.Count() != 0,
-                mensagem = login.Count() != 0 ? "Login Realizado!" : "Email ou Senha incorreta!",
-            };
 
             return View();
         }

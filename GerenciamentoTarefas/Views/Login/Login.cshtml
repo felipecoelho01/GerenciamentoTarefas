@@ -15,7 +15,8 @@
                         <p class="text-muted small mt-2">Crie uma conta para aproveitar todos os recursos</p>
                     </div>
                     <div class="col-12 p-4 d-flex justify-content-center">
-                        <button class="btn btn-primary px-4 py-2 rounded-pill fw-bold shadow-sm">Criar Conta</button>
+                        <a class="btn btn-outline-primary px-4 py-2 rounded-pill fw-bold shadow-sm"
+                           href='@Url.Action("Index", "Register")'>Criar Conta</a>
                     </div>
                 </div>
             </div>
@@ -26,16 +27,16 @@
                         <p class="text-muted small">Entre com suas credenciais</p>
                     </div>
                     <form method="post">
-                        <div class="col-12 mb-3 text-center">
-                            <input class="form-control rounded-pill border-0 shadow-sm px-4 py-2"
+                        <div class="col-12 mb-3 d-flex justify-content-center align-items-center">
+                            <input class="form-control rounded-pill border-0 shadow-sm px-4 py-2 w-50"
                                    type="email"
                                    placeholder="Coloque seu E-mail"
                                    minlength="10"
                                    asp-for="Email"
                                    style="background-color: rgba(255,255,255,0.7);" />
                         </div>
-                        <div class="col-12 mb-3 text-center">
-                            <input class="form-control rounded-pill border-0 shadow-sm px-4 py-2"
+                        <div class="col-12 mb-3 d-flex justify-content-center align-items-center">
+                            <input class="form-control rounded-pill border-0 shadow-sm px-4 py-2 w-50"
                                    type="password"
                                    placeholder="Coloque sua Senha"
                                    minlength="6"
@@ -50,17 +51,9 @@
                             <a href="#" class="text-decoration-none text-primary small ms-3">Esqueceu a Senha?</a>
                         </div>
                         <div class="col-12 d-flex justify-content-center align-items-center">
-                            <button class="btn btn-success px-4 py-2 rounded-pill fw-bold shadow-sm w-50" type="submit">Entrar</button>
+                            <button class="btn btn-outline-success px-4 py-2 rounded-pill fw-bold shadow-sm w-50" type="submit">Entrar</button>
                         </div>
                     </form>
-                    <div class="col-12 mt-4 text-center">
-                        <p class="text-muted small">Ou entre com</p>
-                        <div class="d-flex justify-content-center gap-3">
-                            <button class="btn btn-outline-primary rounded-circle p-2"><i class="bi bi-google"></i></button>
-                            <button class="btn btn-outline-primary rounded-circle p-2"><i class="bi bi-facebook"></i></button>
-                            <button class="btn btn-outline-primary rounded-circle p-2"><i class="bi bi-twitter"></i></button>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>

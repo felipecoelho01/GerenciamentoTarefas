@@ -15,6 +15,7 @@ namespace GerenciamentoTarefas.Controllers
 
 
         [HttpGet]
+        [Route("tarefas/Index")]
         public async Task<IActionResult> Tarefas()
         {
             var listTask = await dbContext.TodoLists.FindAsync();
