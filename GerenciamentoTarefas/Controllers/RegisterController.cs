@@ -1,4 +1,5 @@
-﻿using GerenciamentoTarefas.Models.Entities;
+﻿using GerenciamentoTarefas.Models;
+using GerenciamentoTarefas.Models.Entities;
 using GerenciamentoTarefas.Services;
 using GerenciamentoTarefas.ViewModels;
 using Microsoft.AspNetCore.Mvc;
@@ -21,11 +22,26 @@ namespace GerenciamentoTarefas.Controllers
         }
 
         [HttpPost]
+        [Route("register/RegisterUser")]
         public async Task<IActionResult> Register(DoRegisterViewModel vm)
         {
-            if (vm.Senha != vm.SenhaConfirm)
+
+            var verify = new VerifyModel
             {
-                return View();
+                verifica = true,
+                mensagem = "Cadastro Bem Sucedido!",
+            };
+
+
+            if (vm.Senha != vm.SenhaConfirm || Convert.ToBoolean(VerifyEmail(vm.Email)))
+            {
+                verify = new VerifyModel
+                {
+                    verifica = false,
+                    mensagem = vm.Senha != vm.SenhaConfirm ? "Senhas não coincidem!" : "Email já existe!",
+                };
+
+                return Json(verify);
             }
 
             var register = new ListaEntity
@@ -34,20 +50,18 @@ namespace GerenciamentoTarefas.Controllers
                 Senha = vm.Senha,
             };
 
-            List<ListaEntity> listaEmail = await ListarEmail();
+            await dbContext.TbLogin.AddAsync(register);
+            await dbContext.SaveChangesAsync();
 
-            //await dbContext.TbLogin.AddAsync(register);
-            //await dbContext.SaveChangesAsync();
-
-            return View();
+            return Json(verify);
         }
 
         [HttpGet]
-        public async Task<List<ListaEntity>> ListarEmail()
+        public async Task<Boolean> VerifyEmail(String email)
         {
-            var emails = await dbContext.TbLogin.ToListAsync();
+            var emails = await dbContext.TbLogin.Where(emails => emails.Email == email).ToListAsync();
 
-            return emails;
+            return emails.Count != 0;
         }
     }
 }
