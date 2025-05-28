@@ -32,9 +32,7 @@ app.UseWebSockets();
 app.UseAuthorization();
 
 app.MapControllerRoute(
-    name: "login",
-    pattern: "{controller=Login}/{action=Login}");
-
-app.UseWebSockets();
+    name: "default",
+    pattern: "{controller=Login}/{action=Login}/{id?}");
 
 app.Run();

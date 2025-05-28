@@ -17,20 +17,25 @@ namespace GerenciamentoTarefas.Controllers
         }
 
         [HttpGet]
-        [Route("login/Index")]
         public IActionResult Login()
         {
             return View();
         }
 
         [HttpPost]
-        [Route("login/RelizarLogin")]
+        [Route("login/Login")]
         public async Task<IActionResult> Login(DoLoginViewModel vm)
         {
-            var login = await dbContext.TbLogin.Where(login => login.Email == vm.Email && login.Senha == vm.Senha).ToListAsync();
+            var loginList = await dbContext.TbLogin
+                .Where(login => login.Email == vm.Email && login.Senha == vm.Senha)
+                .ToListAsync();
 
+            if (loginList.Count == 0)
+            {
+                return Json(new { success = false, message = "Email não cadastrado!" });
+            }
 
-            return View();
+            return Json(new { success = true, message = "Login Realizado!" });
         }
     }
 }

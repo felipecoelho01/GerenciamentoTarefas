@@ -34,6 +34,7 @@
 					<label for="iptConfirm" class="form-label fw-semibold text-black">Confirme sua senha:</label>
 					<input id="iptConfirm" class="form-control rounded-3 py-2"
 					       type="password" placeholder="Digite a senha novamente" minlength="6" required asp-for="SenhaConfirm"/>
+					<span id="textWrong" class="text-danger hide">As senha estão diferentes</span>
 				</div>
 
 				<div class="col-12 d-grid gap-2">
