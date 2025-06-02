@@ -1,40 +1,44 @@
 ﻿@using GerenciamentoTarefas.ViewModels
 @model DoRegisterViewModel
 
+@section Scripts {
+	<script src="~/js/Register/Register.js" asp-append-version="true"></script>
+}
+
 <div class="container">
 	<div class="card p-5 shadow-lg w-50 mx-auto" style="background-color: rgba(255, 255, 255, 0.5);">
 		<div class="row border border-dark rounded-3 p-4 shadow bg-light">
 			<form id="registerForm">
 				@Html.AntiForgeryToken()
 				<div class="col-12 mb-4 text-center">
-					<h2 class="fw-bold text-primary">Cadastro</h2>
+					<h2 class="fw-bold text-primary" id="teste">Cadastro</h2>
 					<p class="text-muted">Preencha os campos abaixo para criar sua conta</p>
 				</div>
 
 				<div class="col-12 mb-3">
 					<label for="iptNome" class="form-label fw-semibold text-black">Nome completo:</label>
-					<input id="iptNome" class="form-control rounded-3 py-2" type="text"
-					       placeholder="Digite seu nome completo" minlength="10" required asp-for="NomeCompleto"/>
+					<input id="iptNome" class="form-control rounded-3 py-2" type="text" name="NomeCompleto"
+					       placeholder="Digite seu nome completo" minlength="5" required />
 				</div>
 
 				<div class="col-12 mb-3">
 					<label for="iptEmail" class="form-label fw-semibold text-black">E-mail:</label>
-					<input id="iptEmail" class="form-control rounded-3 py-2"
-					       type="email" placeholder="exemplo@email.com" minlength="10" required asp-for="Email"/>
+					<input id="iptEmail" class="form-control rounded-3 py-2" name="Email"
+					       type="email" placeholder="exemplo@email.com" minlength="10" required />
 				</div>
 
 				<div class="col-12 mb-3">
 					<label for="iptSenha" class="form-label fw-semibold text-black">Senha:</label>
-					<input id="iptSenha" class="form-control rounded-3 py-2"
-					       type="password" placeholder="Mínimo 6 caracteres" minlength="6" required asp-for="Senha"/>
+					<input id="iptSenha" class="form-control rounded-3 py-2" name="Senha"
+					       type="password" placeholder="Mínimo 6 caracteres" minlength="6" required />
 					<div class="form-text">A senha deve conter pelo menos 6 caracteres</div>
 				</div>
 
 				<div class="col-12 mb-4">
 					<label for="iptConfirm" class="form-label fw-semibold text-black">Confirme sua senha:</label>
-					<input id="iptConfirm" class="form-control rounded-3 py-2"
-					       type="password" placeholder="Digite a senha novamente" minlength="6" required asp-for="SenhaConfirm"/>
-					<span id="textWrong" class="text-danger hide">As senha estão diferentes</span>
+					<input id="iptConfirm" class="form-control rounded-3 py-2" name="SenhaConfirm"
+					       type="password" placeholder="Digite a senha novamente" minlength="6" required />
+					<span id="textWrong" class="text-danger visually-hidden">As senha estão diferentes*</span>
 				</div>
 
 				<div class="col-12 d-grid gap-2">
@@ -44,3 +48,4 @@
 		</div>
 	</div>
 </div>
+

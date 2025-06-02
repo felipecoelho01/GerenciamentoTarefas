@@ -2,60 +2,62 @@
 @model DoLoginViewModel
 
 <div class="container d-flex justify-content-center align-items-center min-vh-100">
-    <div class="card p-5 shadow-lg" style="background: linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.5) 100%); backdrop-filter: blur(10px); border-radius: 20px; border: none;">
-        <div class="row g-0">
-            <div class="col-lg-4 pt-5 border-end border-dark border-opacity-25 pe-4">
-                <div class="row">
-                    <div class="col-12 mb-5 text-center">
-                        <h1 class="fw-bold text-black display-6">BEM VINDO</h1>
-                        <p class="text-muted mt-2">Acesse sua conta ou crie uma nova</p>
-                    </div>
-                    <div class="col-12 ms-3">
-                        <h2 class="fw-bold text-black fs-3"><span class="text-primary">Novo</span> Login</h2>
-                        <p class="text-muted small mt-2">Crie uma conta para aproveitar todos os recursos</p>
-                    </div>
-                    <div class="col-12 p-4 d-flex justify-content-center">
-                        <a class="btn btn-outline-primary px-4 py-2 rounded-pill fw-bold shadow-sm"
-                           href='@Url.Action("Index", "Register")'>Criar Conta</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-8 pt-5 ps-4">
-                <div class="row">
-                    <div class="col-12 mb-4 text-center">
-                        <h2 class="fw-bold text-black fs-3">FAÇA LOGIN</h2>
-                        <p class="text-muted small">Entre com suas credenciais</p>
-                    </div>
-                    <form method="post">
-                        <div class="col-12 mb-3 d-flex justify-content-center align-items-center">
-                            <input class="form-control rounded-pill border-0 shadow-sm px-4 py-2 w-50"
-                                   type="email"
-                                   placeholder="Coloque seu E-mail"
-                                   minlength="10"
-                                   asp-for="Email"
-                                   style="background-color: rgba(255,255,255,0.7);" />
-                        </div>
-                        <div class="col-12 mb-3 d-flex justify-content-center align-items-center">
-                            <input class="form-control rounded-pill border-0 shadow-sm px-4 py-2 w-50"
-                                   type="password"
-                                   placeholder="Coloque sua Senha"
-                                   minlength="6"
-                                   asp-for="Senha"
-                                   style="background-color: rgba(255,255,255,0.7);" />
-                        </div>
-                        <div class="col-12 d-flex justify-content-center align-items-center mb-4">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="lembrar" />
-                                <label class="form-check-label small text-muted" for="lembrar">Lembrar</label>
-                            </div>
-                            <a href="#" class="text-decoration-none text-primary small ms-3">Esqueceu a Senha?</a>
-                        </div>
-                        <div class="col-12 d-flex justify-content-center align-items-center">
-                            <button class="btn btn-outline-success px-4 py-2 rounded-pill fw-bold shadow-sm w-50" type="submit">Entrar</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+	<div class="card p-5 shadow-lg" style="background: linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.5) 100%); backdrop-filter: blur(10px); border-radius: 20px; border: none;">
+		<div class="row g-0">
+			<div class="col-lg-4 pt-5 border-end border-dark border-opacity-25 pe-4">
+				<div class="row">
+					<div class="col-12 mb-5 text-center">
+						<h1 class="fw-bold text-black display-6">BEM VINDO</h1>
+						<p class="text-muted mt-2">Acesse sua conta ou crie uma nova</p>
+					</div>
+					<div class="col-12 ms-3">
+						<h2 class="fw-bold text-black fs-3"><span class="text-primary">Novo</span> Login</h2>
+						<p class="text-muted small mt-2">Crie uma conta para aproveitar todos os recursos</p>
+					</div>
+					<div class="col-12 p-4 d-flex justify-content-center">
+						<a class="btn btn-outline-primary px-4 py-2 rounded-pill fw-bold shadow-sm"
+						   href='@Url.Action("Register", "Register")'>Criar Conta</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-8 pt-5 ps-4">
+				<div class="row">
+					<div class="col-12 mb-4 text-center">
+						<h2 class="fw-bold text-black fs-3">FAÇA LOGIN</h2>
+						<p class="text-muted small">Entre com suas credenciais</p>
+					</div>
+					<form method="post">
+						<div class="col-12 mb-3 d-flex justify-content-center align-items-center">
+							<input class="form-control rounded-pill border-0 shadow-sm px-4 py-2 w-50"
+							       type="email"
+							       placeholder="Coloque seu E-mail"
+							       minlength="10"
+							       asp-for="Email"
+							       style="background-color: rgba(255,255,255,0.7);" />
+						</div>
+						<div class="col-12 mb-3 d-flex justify-content-center align-items-center">
+							<input class="form-control rounded-pill border-0 shadow-sm px-4 py-2 w-50"
+							       type="password"
+							       placeholder="Coloque sua Senha"
+							       minlength="6"
+							       asp-for="Senha"
+							       style="background-color: rgba(255,255,255,0.7);" />
+						</div>
+						<div class="col-12 d-flex justify-content-center align-items-center mb-4">
+							<div class="form-check">
+								<input class="form-check-input" type="checkbox" id="lembrar" />
+								<label class="form-check-label small text-muted" for="lembrar">Lembrar</label>
+							</div>
+							<a href="#" class="text-decoration-none text-primary small ms-3">Esqueceu a Senha?</a>
+						</div>
+						<div class="col-12 d-flex justify-content-center align-items-center">
+							<button class="btn btn-outline-success px-4 py-2 rounded-pill fw-bold shadow-sm w-50" type="submit">Entrar</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
+
+@* <script src="js/"></script> *@

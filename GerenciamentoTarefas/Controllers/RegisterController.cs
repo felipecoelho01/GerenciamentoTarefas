@@ -24,32 +24,49 @@ namespace GerenciamentoTarefas.Controllers
 
         [HttpPost]
         [Route("register/RegisterUser")]
-        public async Task<IActionResult> Register(DoRegisterViewModel vm)
+        public async Task<IActionResult> Register([FromForm] DoRegisterViewModel vm)
         {
-
-            if (vm.Senha != vm.SenhaConfirm || Convert.ToBoolean(VerifyEmail(vm.Email)))
+            try
             {
-                return Json(new { success = false, message = "Erro de validação" });
+                if (vm.Senha != vm.SenhaConfirm || await VerifyEmail(vm.Email))
+                {
+                    return Json(new { success = false, message = "Erro de validação" });
+                }
+
+                var register = new UserEntity
+                {
+                    Email = vm.Email,
+                    Senha = vm.Senha,
+                    Nome = vm.NomeCompleto
+                };
+
+                await dbContext.TbLogin.AddAsync(register);
+                await dbContext.SaveChangesAsync();
+
+                return Json(new { success = true, message = "Dados recebidos!" });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false, message = ex });
             }
 
-            var register = new ListaEntity
-            {
-                Email = vm.Email,
-                Senha = vm.Senha,
-            };
-
-            await dbContext.TbLogin.AddAsync(register);
-            await dbContext.SaveChangesAsync();
-
-            return Json(new { success = true, message = "Dados recebidos!" });
         }
 
         [HttpGet]
         public async Task<Boolean> VerifyEmail(String email)
         {
-            var emails = await dbContext.TbLogin.Where(emails => emails.Email == email).ToListAsync();
+            try
+            {
+                var emailExists = await dbContext.TbLogin.AnyAsync(emails => emails.Email == email);
 
-            return emails.Count != 0;
+                return emailExists;
+            }
+            catch (Exception ex)
+            {
+                var erro = ex;
+            }
+
+            return false;
         }
     }
 }

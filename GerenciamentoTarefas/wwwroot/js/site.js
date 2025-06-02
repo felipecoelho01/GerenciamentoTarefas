@@ -5,6 +5,7 @@
 //showToast({ type: 'danger', message: 'Ocorreu um erro.' });
 
 function showToast(options) {
+    console.log("VEIO????????????");
     // Configurações padrão
     const defaults = {
         title: 'Notificação',

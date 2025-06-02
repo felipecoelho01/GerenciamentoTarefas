@@ -6,12 +6,17 @@
         }
     });
 
-    $('#iptConfirm').on("change", function () {
+    $('#iptConfirm').on("keyup", function () {
+        console.log("teste");
         if ($(this).val().trim() !== $("#iptSenha").val().trim()) {
-            $("#textWrong").show();
+            $("#textWrong").removeClass("visually-hidden");
         } else {
-            ("#textWrong").hide();
+            $("#textWrong").addClass("visually-hidden");
         }
+    });
+
+    $("#teste").on("click", function () {
+        showToast({ type: 'danger', message: 'teste' });
     });
 });
 
@@ -25,37 +30,41 @@ function validateRegister() {
     }
 
     if ($("#iptEmail").val().trim() === "") {
-        toasterType = { type: 'danger', message: 'Campo "email" está vazio!' }
+        toasterType = { type: 'danger', message: 'Campo "email" está vazio!' };
         validate = false;
     }
 
     if ($("#iptSenha").val().trim() === "") {
-        toasterType = { type: 'danger', message: 'Campo "senha" está vazio!' }
+        toasterType = { type: 'danger', message: 'Campo "senha" está vazio!' };
         validate = false;
     }
 
     if ($("#iptConfirm").val().trim() === "") {
-        toasterType = { type: 'danger', message: 'Campo "confirmar senha" está vazio!' }
+        toasterType = { type: 'danger', message: 'Campo "confirmar senha" está vazio!' };
+        validate = false;
+    }
+
+    if ($("#iptConfirm").val().trim() !== $("#iptSenha").val().trim()) {
+        toasterType = { type: 'danger', message: 'Os campos não coincidem!' };
         validate = false;
     }
 
     if (!validate) {
-        showToast(toasterType)
+        showToast(toasterType);
     }
     return validate;
 }
 
 function formSubmit(form) {
     $.ajax({
-        url: '@Url.Action("RegisterUser", "register")',
+        url: '/register/RegisterUser',
         type: 'POST',
         data: $(form).serialize(),
         success: function (response) {
-            $('#resultado').html('Dados enviados com sucesso!');
             console.log(response);
         },
         error: function (xhr, status, error) {
-            $('#resultado').html('Ocorreu um erro: ' + error);
+            showToast({ type: 'danger', message: error });
         }
     });
 }
