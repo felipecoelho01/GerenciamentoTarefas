@@ -61,7 +61,11 @@ function formSubmit(form) {
         type: 'POST',
         data: $(form).serialize(),
         success: function (response) {
-            console.log(response);
+            showToast({ type: 'success', message: response.message });
+
+            setTimeout(() => {
+                window.location.href = '/Login/Login';
+            }, 3000);
         },
         error: function (xhr, status, error) {
             showToast({ type: 'danger', message: error });

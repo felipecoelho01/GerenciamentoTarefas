@@ -43,7 +43,7 @@ namespace GerenciamentoTarefas.Controllers
                 await dbContext.TbLogin.AddAsync(register);
                 await dbContext.SaveChangesAsync();
 
-                return Json(new { success = true, message = "Dados recebidos!" });
+                return Json(new { success = true, message = "Registro Realizado!" });
             }
             catch (Exception ex)
             {

@@ -1,6 +1,10 @@
 ﻿@using GerenciamentoTarefas.ViewModels
 @model DoLoginViewModel
 
+@section Scripts {
+	<script src="~/js/Login/Login.js" asp-append-version="true"></script>
+}
+
 <div class="container d-flex justify-content-center align-items-center min-vh-100">
 	<div class="card p-5 shadow-lg" style="background: linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.5) 100%); backdrop-filter: blur(10px); border-radius: 20px; border: none;">
 		<div class="row g-0">
@@ -26,32 +30,33 @@
 						<h2 class="fw-bold text-black fs-3">FAÇA LOGIN</h2>
 						<p class="text-muted small">Entre com suas credenciais</p>
 					</div>
-					<form method="post">
+					<form id="loginForm">
+						@Html.AntiForgeryToken()
 						<div class="col-12 mb-3 d-flex justify-content-center align-items-center">
 							<input class="form-control rounded-pill border-0 shadow-sm px-4 py-2 w-50"
 							       type="email"
 							       placeholder="Coloque seu E-mail"
 							       minlength="10"
-							       asp-for="Email"
-							       style="background-color: rgba(255,255,255,0.7);" />
+							       name="Email"
+							       style="background-color: rgba(255,255,255,0.7);"/>
 						</div>
 						<div class="col-12 mb-3 d-flex justify-content-center align-items-center">
 							<input class="form-control rounded-pill border-0 shadow-sm px-4 py-2 w-50"
 							       type="password"
 							       placeholder="Coloque sua Senha"
 							       minlength="6"
-							       asp-for="Senha"
-							       style="background-color: rgba(255,255,255,0.7);" />
+							       name="Senha"
+							       style="background-color: rgba(255,255,255,0.7);"/>
 						</div>
 						<div class="col-12 d-flex justify-content-center align-items-center mb-4">
 							<div class="form-check">
-								<input class="form-check-input" type="checkbox" id="lembrar" />
+								<input class="form-check-input" type="checkbox" id="lembrar"/>
 								<label class="form-check-label small text-muted" for="lembrar">Lembrar</label>
 							</div>
 							<a href="#" class="text-decoration-none text-primary small ms-3">Esqueceu a Senha?</a>
 						</div>
 						<div class="col-12 d-flex justify-content-center align-items-center">
-							<button class="btn btn-outline-success px-4 py-2 rounded-pill fw-bold shadow-sm w-50" type="submit">Entrar</button>
+							<button class="btn btn-outline-success px-4 py-2 rounded-pill fw-bold shadow-sm w-50" type="button">Entrar</button>
 						</div>
 					</form>
 				</div>

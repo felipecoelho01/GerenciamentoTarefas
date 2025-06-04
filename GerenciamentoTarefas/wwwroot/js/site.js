@@ -6,7 +6,7 @@
 
 function showToast(options) {
     console.log("VEIO????????????");
-    // Configurações padrão
+    
     const defaults = {
         title: 'Notificação',
         message: 'Esta é uma mensagem de toast.',
@@ -26,7 +26,7 @@ function showToast(options) {
                 <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
             </div>
             <div class="toast-body">
-                ${settings.message}
+                <p class="text-black">${settings.message}</p>
             </div>
         </div>
     `);

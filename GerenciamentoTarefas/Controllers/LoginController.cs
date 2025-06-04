@@ -17,9 +17,9 @@ namespace GerenciamentoTarefas.Controllers
         }
 
         [HttpGet]
-        public IActionResult Login()
+        public async Task<IActionResult> Login()
         {
-            return View();
+            return View("Login");
         }
 
         [HttpPost]
