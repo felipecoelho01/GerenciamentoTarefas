@@ -1,1 +1,86 @@
-﻿
+﻿<div class="container min-vh-100">
+    <div class="row mb-4" style="background: linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.5) 100%); backdrop-filter: blur(10px); border-radius: 20px; border: none;">
+        <div class="col-md-8 mx-auto">
+            <h1 class="text-center mb-4">Gerenciador de Tarefas</h1>
+
+            <!-- Barra de pesquisa e botão para nova tarefa -->
+            <div class="d-flex justify-content-between mb-4">
+                <div class="search-container" style="width: 70%;">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="searchInput" class="form-control search-input" placeholder="Pesquisar por título...">
+                </div>
+                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#taskModal">
+                    <i class="fas fa-plus"></i> Nova Tarefa
+                </button>
+            </div>
+
+            <!-- Opções de ordenação -->
+            <div class="d-flex justify-content-between mb-3">
+                <div class="btn-group">
+                    <span class="me-2 align-self-center">Ordenar por:</span>
+                    <button type="button" class="btn btn-outline-secondary sort-option active" data-sort="date">
+                        <i class="fas fa-calendar-alt"></i> Data
+                    </button>
+                    <button type="button" class="btn btn-outline-secondary sort-option" data-sort="priority">
+                        <i class="fas fa-exclamation-circle"></i> Prioridade
+                    </button>
+                    <button type="button" class="btn btn-outline-secondary sort-option" data-sort="completed">
+                        <i class="fas fa-check-circle"></i> Concluída
+                    </button>
+                </div>
+            </div>
+
+            <!-- Lista de tarefas -->
+            <div id="tasksContainer">
+                <!-- As tarefas serão carregadas aqui via JavaScript -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal para adicionar/editar tarefa -->
+<div class="modal fade" id="taskModal" tabindex="-1" aria-labelledby="taskModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="taskModalLabel">Nova Tarefa</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="taskForm">
+                    <input type="hidden" id="taskId">
+                    <div class="mb-3">
+                        <label for="taskTitle" class="form-label">Título</label>
+                        <input type="text" class="form-control" id="taskTitle" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="taskDescription" class="form-label">Descrição</label>
+                        <textarea class="form-control" id="taskDescription" rows="3"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="taskDueDate" class="form-label">Data de Vencimento</label>
+                        <input type="date" class="form-control" id="taskDueDate" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="taskPriority" class="form-label">Prioridade</label>
+                        <select class="form-select" id="taskPriority" required>
+                            <option value="high">Alta</option>
+                            <option value="medium" selected>Média</option>
+                            <option value="low">Baixa</option>
+                        </select>
+                    </div>
+                    <div class="form-check mb-3">
+                        <input class="form-check-input" type="checkbox" id="taskCompleted">
+                        <label class="form-check-label" for="taskCompleted">
+                            Tarefa concluída
+                        </label>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary" id="saveTask">Salvar</button>
+            </div>
+        </div>
+    </div>
+</div>

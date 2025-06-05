@@ -15,9 +15,6 @@
         }
     });
 
-    $("#teste").on("click", function () {
-        showToast({ type: 'danger', message: 'teste' });
-    });
 });
 
 function validateRegister() {

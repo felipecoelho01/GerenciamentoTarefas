@@ -15,12 +15,12 @@ namespace GerenciamentoTarefas.Controllers
 
 
         [HttpGet]
-        [Route("tarefas/Index")]
-        public async Task<IActionResult> Tarefas()
+        [Route("Tarefas/Index/{id}")]
+        public async Task<IActionResult> Tarefas(int id)
         {
-            var listTask = await dbContext.TodoLists.FindAsync();
+            //var listTask = await dbContext.TodoLists.FindAsync();
 
-            return View();
+            return View("Tarefas");
         }
 
         [HttpPost]

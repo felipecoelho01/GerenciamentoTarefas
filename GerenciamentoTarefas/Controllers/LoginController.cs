@@ -23,8 +23,8 @@ namespace GerenciamentoTarefas.Controllers
         }
 
         [HttpPost]
-        [Route("login/Login")]
-        public async Task<IActionResult> Login(DoLoginViewModel vm)
+        [Route("login/FazerLogin")]
+        public async Task<IActionResult> Login([FromForm] DoLoginViewModel vm)
         {
             var loginList = await dbContext.TbLogin
                 .Where(login => login.Email == vm.Email && login.Senha == vm.Senha)
