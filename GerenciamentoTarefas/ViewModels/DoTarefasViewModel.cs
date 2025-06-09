@@ -1,4 +1,6 @@
-﻿namespace GerenciamentoTarefas.ViewModels
+﻿using GerenciamentoTarefas.Models.Entities;
+
+namespace GerenciamentoTarefas.ViewModels
 {
     public class DoTarefasViewModel
     {
@@ -10,5 +12,7 @@
         public int important { get; set; }
         public string Concluida { get; set; }
         public int IdUser { get; set; }
+
+        public List<TarefasEntity> listaTaks { get; set; }
     }
 }
