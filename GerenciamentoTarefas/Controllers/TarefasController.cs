@@ -1,6 +1,8 @@
 ﻿using GerenciamentoTarefas.Models.Entities;
 using GerenciamentoTarefas.Services;
+using GerenciamentoTarefas.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace GerenciamentoTarefas.Controllers
 {
@@ -18,9 +20,34 @@ namespace GerenciamentoTarefas.Controllers
         [Route("Tarefas/Index/{id}")]
         public async Task<IActionResult> Tarefas(int id)
         {
-            //var listTask = await dbContext.TodoLists.FindAsync();
+            try
+            {
+                var listTask = await dbContext.TodoLists.Where(p => p.IdUser == id).ToListAsync();
 
-            return View("Tarefas");
+                var vmList = new List<DoTarefasViewModel>();
+
+                foreach (var item in listTask)
+                {
+                    var vm = new DoTarefasViewModel
+                    {
+                        idList = item.idList,
+                        dtList = item.dtList,
+                        list_title = item.list_title,
+                        list_description = item.list_description,
+                        dtConclusion = item.dtConclusion,
+                        important = item.important,
+                        Concluida = item.Concluida,
+                    };
+                    vmList.Add(vm);
+                }
+
+                return View("Tarefas", vmList);
+            }
+            catch (Exception ex)
+            {
+                return Json(new { error = ex.Message });
+            }
+
         }
 
         [HttpPost]
