@@ -22,7 +22,7 @@ namespace GerenciamentoTarefas.Controllers
         {
             try
             {
-                var listTask = await dbContext.TodoLists.Where(p => p.IdUser == id).ToListAsync();
+                var listTask = await dbContext.TodoLists.Where(p => p.IdUser == id).OrderByDescending(p => p.dtList).ToListAsync();
 
                 var vmList = new List<DoTarefasViewModel>();
 
