@@ -83,6 +83,7 @@
 			</div>
 			<div class="modal-body">
 				<form id="taskForm">
+					@Html.AntiForgeryToken()
 					<input type="hidden" id="taskId">
 					<div class="mb-3">
 						<label for="taskTitle" class="form-label text-black">Título</label>
@@ -116,7 +117,7 @@
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
-				<button type="button" class="btn btn-outline-primary" id="saveTask"></button>
+				<button type="submit" class="btn btn-outline-primary"></button>
 			</div>
 		</div>
 	</div>

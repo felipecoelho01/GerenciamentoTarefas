@@ -20,24 +20,53 @@
         $("#taskRemoveModal").modal("show");
     });
 
-    $("#saveTask").on("click", function () {
+    $("#taskForm").on("submit", function (e) {
+        e.preventDefault();
         if (validaTask()) {
             if ($(this).text() === "Editar") {
-                editaTarefa($("#taskId").val());
+                editaTarefa(this);
             } else {
-                criaTarefa();
+                criaTarefa(this);
             }
         }
     });
 });
 
 
-function criaTarefa() {
+function criaTarefa(form) {
+    $.ajax({
+        url: '/Tarefas/criar',
+        type: 'POST',
+        data: $(form).serialize(),
+        success: function (response) {
+            showToast({ type: 'success', message: response.message });
 
+            setTimeout(() => {
+                //window.location.href = '/Login/Login';
+            }, 3000);
+        },
+        error: function (xhr, status, error) {
+            showToast({ type: 'danger', message: error });
+        }
+    });
 }
 
-function editaTarefa(id) {
+function editaTarefa(form) {
+    $.ajax({
+        url: '/Tarefas/editar',
+        type: 'POST',
+        data: $(form).serialize(),
+        success: function (response) {
+            showToast({ type: 'success', message: response.message });
 
+            setTimeout(() => {
+                //window.location.href = '/Login/Login';
+            }, 3000);
+        },
+        error: function (xhr, status, error) {
+            showToast({ type: 'danger', message: error });
+        }
+    });
 }
 
 function validaTask() {

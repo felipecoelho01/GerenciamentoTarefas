@@ -51,7 +51,8 @@ namespace GerenciamentoTarefas.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Edit(TarefasEntity vw)
+        [Route("Tarefas/editar")]
+        public async Task<IActionResult> Edit([FromForm] TarefasEntity vw)
         {
             var Task = await dbContext.TodoLists.FindAsync(vw.idList);
 
@@ -67,6 +68,32 @@ namespace GerenciamentoTarefas.Controllers
             }
 
             return RedirectToAction();
+        }
+
+        [HttpPost]
+        [Route("Tarefas/criar")]
+        public async Task<IActionResult> Create([FromForm] TarefasEntity vw)
+        {
+            try
+            {
+                var Task = new TarefasEntity
+                {
+                    list_title = vw.list_title,
+                    list_description = vw.list_description,
+                    dtConclusion = vw.dtConclusion,
+                    dtList = DateTime.Now,
+                    important = vw.important,
+                    Concluida = vw.Concluida,
+                };
+
+                await dbContext.TodoLists.AddAsync(Task);
+                await dbContext.SaveChangesAsync();
+
+                return Json(new { success = true, message = "Tarefa criada com Sucesso!" });
+            }
+            catch (Exception ex) {
+                return Json(new { success = false, message = ex });
+            }
         }
 
         [HttpGet]
