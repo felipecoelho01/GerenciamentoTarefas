@@ -2,7 +2,7 @@
 @model IEnumerable<DoTarefasViewModel>
 
 @section Scripts {
-	<script src="~/js/Tarefas/Tarefas.js" asp-append-version="true"></script>
+<script src="~/js/Tarefas/Tarefas.js" asp-append-version="true"></script>
 }
 
 <div class="container min-vh-100">
@@ -86,7 +86,7 @@
 					<input type="hidden" id="taskId">
 					<div class="mb-3">
 						<label for="taskTitle" class="form-label text-black">Título</label>
-						<input type="text" class="form-control" id="taskTitle" required>
+						<input type="text" class="form-control" id="taskTitle">
 					</div>
 					<div class="mb-3">
 						<label for="taskDescription" class="form-label text-black">Descrição</label>
@@ -94,11 +94,11 @@
 					</div>
 					<div class="mb-3">
 						<label for="taskDueDate" class="form-label text-black">Data de Vencimento</label>
-						<input type="date" class="form-control" id="taskDueDate" required>
+						<input type="date" class="form-control" id="taskDueDate">
 					</div>
 					<div class="mb-3">
 						<label for="taskPriority" class="form-label text-black">Prioridade</label>
-						<select class="form-select" id="taskPriority" required>
+						<select class="form-select" id="taskPriority">
 							<option value="1">Muito Baixa</option>
 							<option value="2">Baixa</option>
 							<option value="3" selected>Normal</option>

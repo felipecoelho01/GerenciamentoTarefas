@@ -35,7 +35,7 @@ namespace GerenciamentoTarefas.Controllers
                         list_title = item.list_title,
                         list_description = item.list_description,
                         dtConclusion = item.dtConclusion,
-                        important = item.important,
+                        important = await VerficaPrioridade(item.important),
                         Concluida = item.Concluida,
                     };
                     vmList.Add(vm);
@@ -67,6 +67,33 @@ namespace GerenciamentoTarefas.Controllers
             }
 
             return RedirectToAction();
+        }
+
+        [HttpGet]
+        public async Task<String> VerficaPrioridade(int prioridade) {
+            string text = "";
+            if (prioridade == 1)
+            {
+                text = "Muito Baixa";
+            }
+            else if (prioridade == 2)
+            {
+                text = "Baixa";
+            }
+            else if (prioridade == 3)
+            {
+                text = "Normal";
+            }
+            else if (prioridade == 4)
+            {
+                text = "Alta";
+            }
+            else if (prioridade == 5)
+            {
+                text = "Urgente";
+            }
+
+            return text;
         }
     }
 }

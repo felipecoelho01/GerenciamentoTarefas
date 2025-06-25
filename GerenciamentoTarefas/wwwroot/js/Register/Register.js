@@ -7,7 +7,6 @@
     });
 
     $('#iptConfirm').on("keyup", function () {
-        console.log("teste");
         if ($(this).val().trim() !== $("#iptSenha").val().trim()) {
             $("#textWrong").removeClass("visually-hidden");
         } else {
