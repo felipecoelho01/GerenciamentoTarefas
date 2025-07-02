@@ -1,0 +1,32 @@
+services:
+  gerenciamentodb:
+    container_name: app-db
+    image: mcr.microsoft.com/mssql/server:2022-lts
+    ports:
+      - 8002:1433
+    environment:
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: "Cocozika0202!"
+    networks:
+      - minha-rede
+
+  gerenciamentotarefas:
+    container_name: gerenciamento-tarefas-app
+    image: ${DOCKER_REGISTRY-}gerenciamentotarefas
+    build:
+      context: .
+      dockerfile: GerenciamentoTarefas/Dockerfile
+    ports:
+      - 8001:8080
+    depends_on:
+      - gerenciamentodb
+    environment:
+      - DB_HOST=gerenciamentodb
+      - DB_NAME=Test
+      - DB_SA_PASSWORD=Cocozika0202
+    networks:
+      - minha-rede
+
+networks:
+  minha-rede:
+    driver: bridge
