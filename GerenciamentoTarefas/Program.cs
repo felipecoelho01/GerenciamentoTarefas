@@ -6,9 +6,17 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+var server = Environment.GetEnvironmentVariable("DB_SERVER");
+var port = Environment.GetEnvironmentVariable("DB_PORT") ?? "1433";
+var database = Environment.GetEnvironmentVariable("DB_NAME");
+var user = Environment.GetEnvironmentVariable("DB_USER");
+var password = Environment.GetEnvironmentVariable("DB_PASSWORD");
+
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
-    var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+    //var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+    var connectionString = $"Server={server},{port};Database={database};User Id={user};Password={password};TrustServerCertificate=True;MultipleActiveResultSets=true";
+
     options.UseSqlServer(connectionString);
 });
 
