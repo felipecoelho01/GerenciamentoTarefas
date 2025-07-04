@@ -6,8 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-var server = Environment.GetEnvironmentVariable("DB_SERVER");
-var port = Environment.GetEnvironmentVariable("DB_PORT") ?? "1433";
+var server = Environment.GetEnvironmentVariable("DB_HOST");
 var database = Environment.GetEnvironmentVariable("DB_NAME");
 var user = Environment.GetEnvironmentVariable("DB_USER");
 var password = Environment.GetEnvironmentVariable("DB_PASSWORD");
@@ -15,7 +14,7 @@ var password = Environment.GetEnvironmentVariable("DB_PASSWORD");
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
     //var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-    var connectionString = $"Server={server},{port};Database={database};User Id={user};Password={password};TrustServerCertificate=True;MultipleActiveResultSets=true";
+    var connectionString = $"Server=tcp:{server}.database.windows.net,1433;Database={database};User ID={user};Password={password};Encrypt=True;TrustServerCertificate=False;MultipleActiveResultSets=True;";
 
     options.UseSqlServer(connectionString);
 });
@@ -41,6 +40,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Login}/{action=Login}/{id?}");
+    pattern: "{controller=Login}/{action=Login}");
 
 app.Run();

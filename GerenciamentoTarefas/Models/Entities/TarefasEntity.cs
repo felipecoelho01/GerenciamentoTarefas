@@ -12,7 +12,7 @@ namespace GerenciamentoTarefas.Models.Entities
         public DateTime dtConclusion { get; set; }
         public int important { get; set; }
         public bool Concluida { get; set; }
-        public int IdUser { get; set; }
+        public int id_user { get; set; }
 
     }
 }

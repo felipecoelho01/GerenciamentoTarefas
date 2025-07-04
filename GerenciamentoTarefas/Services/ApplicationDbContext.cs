@@ -21,6 +21,6 @@ namespace GerenciamentoTarefas.Services
 
 
         public DbSet<UserEntity> TbLogin { get; set; }
-        public DbSet<TarefasEntity> TodoLists { get; set; }
+        public DbSet<TarefasEntity> ListaToDo { get; set; }
     }
 }

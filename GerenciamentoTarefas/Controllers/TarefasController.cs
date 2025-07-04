@@ -22,7 +22,7 @@ namespace GerenciamentoTarefas.Controllers
         {
             try
             {
-                var listTask = await dbContext.TodoLists.Where(p => p.IdUser == id).OrderByDescending(p => p.dtList).ToListAsync();
+                var listTask = await dbContext.ListaToDo.Where(p => p.id_user == id).OrderByDescending(p => p.dtList).ToListAsync();
 
                 var vmList = new List<DoTarefasViewModel>();
 
@@ -54,7 +54,7 @@ namespace GerenciamentoTarefas.Controllers
         [Route("Tarefas/editar")]
         public async Task<IActionResult> Edit([FromForm] TarefasEntity vw)
         {
-            var Task = await dbContext.TodoLists.FindAsync(vw.idList);
+            var Task = await dbContext.ListaToDo.FindAsync(vw.idList);
 
             if (Task is not null)
             {
@@ -86,7 +86,7 @@ namespace GerenciamentoTarefas.Controllers
                     Concluida = vw.Concluida,
                 };
 
-                await dbContext.TodoLists.AddAsync(Task);
+                await dbContext.ListaToDo.AddAsync(Task);
                 await dbContext.SaveChangesAsync();
 
                 return Json(new { success = true, message = "Tarefa criada com Sucesso!" });
