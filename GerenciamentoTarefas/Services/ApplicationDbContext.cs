@@ -18,9 +18,7 @@ namespace GerenciamentoTarefas.Services
             base.OnModelCreating(modelBuilder);
         }
 
-
-
-        public DbSet<UserEntity> TbLogin { get; set; }
+        public DbSet<UserEntity> User_Login { get; set; }
         public DbSet<TarefasEntity> ListaToDo { get; set; }
     }
 }

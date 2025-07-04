@@ -6,8 +6,13 @@ namespace GerenciamentoTarefas.Models.Entities
     {
         [Key]
         public int Id { get; set; }
-        public string Email { get; set; }
-        public string Senha { get; set; }
-        public string Nome { get; set; }
+        [Required]
+        public string email { get; set; }
+        [Required]
+        public string nome { get; set; }
+        [Required]
+        public byte[] senhaHash { get; set; }
+        [Required]
+        public byte[] senhaSalt { get; set; }
     }
 }

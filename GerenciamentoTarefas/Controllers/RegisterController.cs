@@ -1,4 +1,6 @@
-﻿using GerenciamentoTarefas.Models;
+﻿using System.Security.Cryptography;
+using System.Text;
+using GerenciamentoTarefas.Models;
 using GerenciamentoTarefas.Models.Entities;
 using GerenciamentoTarefas.Services;
 using GerenciamentoTarefas.ViewModels;
@@ -33,14 +35,17 @@ namespace GerenciamentoTarefas.Controllers
                     return Json(new { success = false, message = "Erro de validação" });
                 }
 
+                CreatePasswordHash(vm.Senha, out byte[] hash, out byte[] salt);
+
                 var register = new UserEntity
                 {
-                    Email = vm.Email,
-                    Senha = vm.Senha,
-                    Nome = vm.NomeCompleto
+                    email = vm.Email,
+                    nome = vm.NomeCompleto,
+                    senhaHash = hash,
+                    senhaSalt = salt,
                 };
 
-                await dbContext.TbLogin.AddAsync(register);
+                await dbContext.User_Login.AddAsync(register);
                 await dbContext.SaveChangesAsync();
 
                 return Json(new { success = true, message = "Registro Realizado!" });
@@ -57,7 +62,7 @@ namespace GerenciamentoTarefas.Controllers
         {
             try
             {
-                var emailExists = await dbContext.TbLogin.AnyAsync(emails => emails.Email == email);
+                var emailExists = await dbContext.User_Login.AnyAsync(emails => emails.email == email);
 
                 return emailExists;
             }
@@ -67,6 +72,17 @@ namespace GerenciamentoTarefas.Controllers
             }
 
             return false;
+        }
+
+        [HttpGet]
+        public static void CreatePasswordHash(string password, out byte[] passwordSalt, out byte[] passwordHash)
+        {
+            using (var hmac = new HMACSHA512()) 
+            {
+                passwordSalt = hmac.Key;
+                passwordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(password));
+
+            }
         }
     }
 }

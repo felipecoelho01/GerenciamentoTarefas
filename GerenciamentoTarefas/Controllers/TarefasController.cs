@@ -35,7 +35,7 @@ namespace GerenciamentoTarefas.Controllers
                         list_title = item.list_title,
                         list_description = item.list_description,
                         dtConclusion = item.dtConclusion,
-                        important = await VerficaPrioridade(item.important),
+                        important = VerficaPrioridade(item.important),
                         Concluida = item.Concluida,
                     };
                     vmList.Add(vm);
@@ -97,7 +97,7 @@ namespace GerenciamentoTarefas.Controllers
         }
 
         [HttpGet]
-        public async Task<String> VerficaPrioridade(int prioridade) {
+        public String VerficaPrioridade(int prioridade) {
             string text = "";
             if (prioridade == 1)
             {
